@@ -40,7 +40,7 @@ NoSQLInjection.py [-h] [-u URL] [-d Data] [-w Wordlist] [-U Username] [-p Proxy]
 ### Example
 
 ```
-NoSQLInjection.py -u http://example.com/login -w filepath -Lo "Logout identifier" -u username -t 50
+NoSQLInjection.py -u http://example.com/login -Lo "Logout identifier" -u username -t 50
 ```
 
 ### Arguments
