@@ -1,2 +1,2 @@
 # NoSQLInjection
-The project contain NoSQL authentication bypass and NoSQL Injection automation script
+The project contain NoSQL authentication bypass and NoSQL Injection automation script.
