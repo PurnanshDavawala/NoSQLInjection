@@ -47,21 +47,16 @@ import threading
 from colorama import Fore, Back, Style
 
 parser = argparse.ArgumentParser(description='NoSQL Authentication bypass')
-parser.add_argument('-u', '--url', type=str, metavar='', required=True, help='Target URL (e.g. "http://www.example.com/login")')
-parser.add_argument('-d', '--data', type=str, metavar='', required=False, help='Data string to be sent through POST')
-parser.add_argument('-w', '--wordlist', type=str, metavar='', required=True, help='Path to the wordlist')
-parser.add_argument('-U', '--Username', type=str, metavar='', required=False, help='Name of the username parameter')
-parser.add_argument('-P', '--Password', type=str, metavar='', required=False, help='Name of the password parameter')
-parser.add_argument('-p', '--proxy', type=str, metavar='', required=False, help='Use a proxy to connect to the target URL (e.g. "127.0.0.1:8080")')
+parser.add_argument('-u', '--url', type=str, metavar='URL', required=True, help='Target URL (e.g. "http://www.example.com/login")')
+parser.add_argument('-d', '--data', type=str, metavar='Data', required=False, help='Data string to be sent through POST')
+parser.add_argument('-w', '--wordlist', type=str, metavar='wordlist', required=True, help='Path to the wordlist')
+parser.add_argument('-p', '--proxy', type=str, metavar='Proxy', required=False, help='Use a proxy to connect to the target URL (e.g. "127.0.0.1:8080")')
 parser.add_argument('-v', '--verbose', required=False, help='verbose mode', action='store_true')
-parser.add_argument('-Lo', '--LogoutIdentifier', type=str, metavar='', required=True, help='String identifier from logged out page')
-
+parser.add_argument('-Lo', '--LogoutIdentifier', type=str, metavar='Logout-Identifier', required=True, help='String identifier from logged out page')
 args = parser.parse_args()
 
 URL = args.url
 DATA = args.data
-Username = args.Username
-Password = args.Password
 WORDLIST = args.wordlist
 LogoutIdentifier = args.LogoutIdentifier
 Proxy = args.proxy
