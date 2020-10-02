@@ -23,7 +23,7 @@ NoSQLAuthBypass.py -u http://example.com/login -w filepath -Lo "Logout identifie
 |  -h, --help            |show this help message and exit|
 |  -u URL, --url URL     |Target URL (e.g. "http://www.example.com/login")|
 |  -d Data, --data Data  |Data string to be sent through POST|
-|  -w wordlist, --wordlist |wordlist Path to the wordlist|
+|  -w wordlist, --wordlist |Path to the wordlist|
 |  -p Proxy, --proxy |Use a proxy to connect to the target URL (e.g. "127.0.0.1:8080")|
 |  -v, --verbose         |verbose mode|
 |  -Lo Logout-Identifier, --LogoutIdentifier |String identifier from logged out page|
@@ -47,9 +47,12 @@ NoSQLInjection.py -u http://example.com/login -Lo "Logout identifier" -u usernam
 | Arguments        | Description           |
 | ------------- |:-------------:|
 |  -h, --help            |show this help message and exit|
-|  -u URL, --url URL     |Target URL (e.g. "http://www.example.com/login")|
+|  -u URL, --URL URL     |Target URL (e.g. "http:#www.example.com/login")|
 |  -d Data, --data Data  |Data string to be sent through POST|
-|  -w wordlist, --wordlist |wordlist Path to the wordlist|
-|  -p Proxy, --proxy |Use a proxy to connect to the target URL (e.g. "127.0.0.1:8080")|
+|  -w Wordlist, --wordlist |Path to the wordlist|
+|  -U Username, --Username |Name of the user|
+|  -p Proxy, --proxy Proxy|Use a proxy to connect to the target URL (e.g. "127.0.0.1:8080")|
 |  -v, --verbose         |verbose mode|
 |  -Lo Logout-Identifier, --LogoutIdentifier |String identifier from logged out page|
+  |-t Threads, --Threads |Number of concurrent thread, Default 50|
+
